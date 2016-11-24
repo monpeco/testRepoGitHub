@@ -146,3 +146,60 @@ class TweetsController < ApplicationController
   
 end
 ```
+#Chalenge
+
+###Create the show action for the ZombiesController which finds a Zombie based on params[:id]. Store the Zombie object to an instance variable named @zombie.
+
+
+```ruby
+class ZombiesController < ApplicationController
+  def show
+    # put the show code here
+    @zombie = Zombie.find(params[:id])
+  end
+end
+```
+
+###Finish the respond_to block so the action returns the XML of the @zombie record
+```ruby
+class ZombiesController < ApplicationController
+  def show
+    @zombie = Zombie.find(params[:id])
+
+    respond_to do |format|
+      format.xml { render xml:@zombie}
+    end
+  end
+end
+```
+
+###Write a create action that will create a new Zombie from the params and then redirect to the created Zombie's show page. Make sure to use Rails 4 strong_parameters.
+```ruby
+class ZombiesController < ApplicationController
+  def create
+    @zombie = Zombie.create(zombie_params)
+    redirect_to(@zombie)
+  end
+
+  private
+
+  def zombie_params
+    params.require(:zombie).permit(:name, :graveyard)
+  end
+end
+```
+
+###Add a before_action that calls a method to check if a Zombie has tweets. Redirect to zombies_path if the zombie doesn't have tweets, only on show.
+```ruby
+
+```
+
+
+```ruby
+
+```
+
+
+```ruby
+
+```
